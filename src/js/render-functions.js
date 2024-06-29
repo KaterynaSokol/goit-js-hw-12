@@ -52,6 +52,8 @@ export function picturesTemplate(data) {
                  alt="${img.tags}"
                  title="${img.tags}"
                  class="card-img"
+                 width="360"
+                 heigth="200"
              /></a>
             <ul class="card-title">
                <li class="card-info">
