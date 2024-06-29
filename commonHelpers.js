@@ -5,6 +5,8 @@ import{a as y,S as L,i as d}from"./assets/vendor-b0d10f48.js";(function(){const 
                  alt="${e.tags}"
                  title="${e.tags}"
                  class="card-img"
+                 width="360"
+                 heigth="200"
              /></a>
             <ul class="card-title">
                <li class="card-info">
