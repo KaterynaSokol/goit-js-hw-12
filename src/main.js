@@ -75,9 +75,15 @@ refs.loadmore.addEventListener('click', async e => {
     refs.gallery.insertAdjacentHTML('beforeend', picturesTemplate(hits));
     lightbox.refresh();
 
-    const { height: cardHeight } = document
+    // const { height: cardHeight } = document
+    //   .querySelector('.gallery')
+    //   .firstElementChild.getBoundingClientRect();
+
+    const cardHeight = document
       .querySelector('.gallery')
-      .firstElementChild.getBoundingClientRect();
+      .firstElementChild.getBoundingClientRect().height;
+
+    console.log(cardHeight);
 
     window.scrollBy({
       top: cardHeight * 2,
