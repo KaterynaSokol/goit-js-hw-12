@@ -1,28 +1,28 @@
-import{S as i,i as c}from"./assets/vendor-8c59ed88.js";(function(){const t=document.createElement("link").relList;if(t&&t.supports&&t.supports("modulepreload"))return;for(const e of document.querySelectorAll('link[rel="modulepreload"]'))o(e);new MutationObserver(e=>{for(const r of e)if(r.type==="childList")for(const n of r.addedNodes)n.tagName==="LINK"&&n.rel==="modulepreload"&&o(n)}).observe(document,{childList:!0,subtree:!0});function s(e){const r={};return e.integrity&&(r.integrity=e.integrity),e.referrerPolicy&&(r.referrerPolicy=e.referrerPolicy),e.crossOrigin==="use-credentials"?r.credentials="include":e.crossOrigin==="anonymous"?r.credentials="omit":r.credentials="same-origin",r}function o(e){if(e.ep)return;e.ep=!0;const r=s(e);fetch(e.href,r)}})();function d(a){const t="https://pixabay.com/api/",s=new URLSearchParams({key:"44667658-9ba2d67695abf8a1c08d7f54b",q:a,image_type:"photo",orientation:"horizontal",safesearch:!0}),o=`${t}?${s}`;return fetch(o).then(e=>{if(!e.ok)throw new Error(e.status);return e.json()})}function u(a){return a.map(t=>`<li class="card">
-             <a href="${t.largeImageURL}" class="big gallery-link">
+import{a as y,S as L,i as d}from"./assets/vendor-b0d10f48.js";(function(){const e=document.createElement("link").relList;if(e&&e.supports&&e.supports("modulepreload"))return;for(const t of document.querySelectorAll('link[rel="modulepreload"]'))l(t);new MutationObserver(t=>{for(const r of t)if(r.type==="childList")for(const c of r.addedNodes)c.tagName==="LINK"&&c.rel==="modulepreload"&&l(c)}).observe(document,{childList:!0,subtree:!0});function s(t){const r={};return t.integrity&&(r.integrity=t.integrity),t.referrerPolicy&&(r.referrerPolicy=t.referrerPolicy),t.crossOrigin==="use-credentials"?r.credentials="include":t.crossOrigin==="anonymous"?r.credentials="omit":r.credentials="same-origin",r}function l(t){if(t.ep)return;t.ep=!0;const r=s(t);fetch(t.href,r)}})();async function u(o,e){const s="https://pixabay.com/api/";return await y.get(`${s}`,{params:{key:"44667658-9ba2d67695abf8a1c08d7f54b",q:o,image_type:"photo",orientation:"horizontal",safesearch:!0,page:e,per_page:15}})}function f(o){return o.map(e=>`<li class="card">
+             <a href="${e.largeImageURL}" class="big gallery-link">
                <img
-                 src="${t.webformatURL}"
-                 alt="${t.tags}"
-                 title="${t.tags}"
+                 src="${e.webformatURL}"
+                 alt="${e.tags}"
+                 title="${e.tags}"
                  class="card-img"
              /></a>
             <ul class="card-title">
                <li class="card-info">
                  <h2 class="card-text">Likes</h2>
-                 <p class="card-text-value">${t.likes}</p>
+                 <p class="card-text-value">${e.likes}</p>
              </li>
                <li class="card-info">
                  <h2 class="card-text">Views</h2>
-                 <p class="card-text-value">${t.views}</p>
+                 <p class="card-text-value">${e.views}</p>
                </li>
                <li class="card-info">
                  <h2 class="card-text">Comments</h2>
-                 <p class="card-text-value">${t.comments}</p>
+                 <p class="card-text-value">${e.comments}</p>
                </li>
                <li class="card-info">
                  <h2 class="card-text">Downloads</h2>
-                 <p class="card-text-value">${t.downloads}</p>
+                 <p class="card-text-value">${e.downloads}</p>
                </li>
              </ul> 
-           </li>`).join("")}const f=new i(".gallery a",{captionsData:"alt",captionDelay:250}),l={searchForm:document.querySelector(".search-form"),searchInput:document.querySelector(".input"),gallery:document.querySelector(".gallery"),loader:document.querySelector(".loader-wrap")};l.searchForm.addEventListener("submit",a=>{a.preventDefault(),l.gallery.innerHTML="",p();const t=a.target.elements.query.value.trim();if(t==="")return c.warning({title:"Warning",message:"Please, enter the query",layout:2,displayMode:"once",backgroundColor:"#ef4040",messageColor:"#ffffff",position:"topRight"});d(t).then(s=>{if(s.hits.length===0)return c.warning({title:"Warning",message:"Sorry, there are no images matching your search query. Please try again!",layout:2,displayMode:"once",backgroundColor:"#ef4040",messageColor:"#ffffff",position:"topRight"});const o=u(s.hits);console.log(o),l.gallery.insertAdjacentHTML("beforeend",o),f.refresh()}).catch(s=>{console.log(s)}).finally(()=>{l.searchForm.reset(),h()})});function p(){l.loader.classList.remove("is-hidden")}function h(){l.loader.classList.add("is-hidden")}
+           </li>`).join("")}const h=new L(".gallery a",{captionsData:"alt",captionDelay:250}),a={searchForm:document.querySelector(".search-form"),searchInput:document.querySelector(".input"),gallery:document.querySelector(".gallery"),loader:document.querySelector(".loader-wrap"),loadmore:document.querySelector(".load-more-btn")};let i=1,n=null;a.searchForm.addEventListener("submit",async o=>{if(o.preventDefault(),a.gallery.innerHTML="",p(),i=1,n=o.target.elements.query.value.trim(),n==="")return d.warning({title:"Warning",message:"Please, enter the query",layout:2,displayMode:"once",backgroundColor:"#ef4040",messageColor:"#ffffff",position:"topRight"});try{const{data:{hits:e,totalHits:s}}=await u(n,i);if(e.length===0)return d.warning({title:"Warning",message:"Sorry, there are no images matching your search query. Please try again!",layout:2,displayMode:"once",backgroundColor:"#ef4040",messageColor:"#ffffff",position:"topRight"});const l=f(e);a.gallery.insertAdjacentHTML("beforeend",l),h.refresh(),s>15?b():m()}catch(e){console.log(e)}finally{a.searchForm.reset(),g()}});a.loadmore.addEventListener("click",async o=>{i+=1,p();try{const{data:{hits:e,totalHits:s}}=await u(n,i);a.gallery.insertAdjacentHTML("beforeend",f(e)),h.refresh();const{height:l}=document.querySelector(".gallery").firstElementChild.getBoundingClientRect();window.scrollBy({top:l*2,behavior:"smooth"});const t=Math.ceil(s/15);i===t&&(m(),d.warning({title:"Warning",message:"We're sorry, but you've reached the end of search results.",layout:2,displayMode:"once",backgroundColor:"#ef4040",messageColor:"#ffffff",position:"topRight"}))}catch{}finally{g()}});function p(){a.loader.classList.remove("is-hidden")}function g(){a.loader.classList.add("is-hidden")}function b(){a.loadmore.classList.remove("is-hidden")}function m(){a.loadmore.classList.add("is-hidden")}
 //# sourceMappingURL=commonHelpers.js.map
